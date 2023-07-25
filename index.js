@@ -14,6 +14,13 @@ const db = new sqlite3.Database('mydatabase.db', sqlite3.OPEN_READWRITE | sqlite
 });
 const theRoutes = routes(db);
 
+//!Schedule Service Task
+db.on('trace', (sql) => {
+  console.log('Executing', sql);
+  console.log('Done !!!')
+});
+
+
 // !Uncomment line to create tables for users and tasks
 // theRoutes.createTable();
 
