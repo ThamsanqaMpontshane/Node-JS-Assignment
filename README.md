@@ -19,7 +19,7 @@ In order for you to be able to delete any data from the tables uncomment one the
 ## Database Used
 My first choice of database to use was fs which is the file system , but due to the amount of errors I was getting . My last resort was to Use Sqlite3 which worked perfectly
 ## Installation
- Clone The Repo From Github To Local
+ Fork And Clone The Repo From Github To Local
  
 
     git clone https://github.com/ThamsanqaMpontshane/Node-JS-Assignment.git
