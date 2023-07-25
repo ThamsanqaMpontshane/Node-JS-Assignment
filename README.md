@@ -1,4 +1,4 @@
-# Node JS Assignment
+# Node JS Assignment [![Node.js CI](https://github.com/ThamsanqaMpontshane/Node-JS-Assignment/actions/workflows/node.js.yml/badge.svg)](https://github.com/ThamsanqaMpontshane/Node-JS-Assignment/actions/workflows/node.js.yml)
 
 # Purpose
 Our test is designed to be open-ended and non-prescriptive, and this is by design. We understand and appreciate that developers possess diverse sets of skills and talents, each with their own unique toolbox. Our goal is to gain insight into your individual abilities and what you consider significant in your work. We look forward to discovering your talents and skills throughout this assessment.
