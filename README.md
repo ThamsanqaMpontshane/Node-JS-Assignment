@@ -13,7 +13,11 @@ Create a simple NodeJS restful application that manages users and tasks for thos
  -  The application should be able to CRUD tasks for users via REST.
  - Data must be persisted to a storage mechanism (Mongo or MySql or Other).
  - Use migrations to setup your database if required.
-
+## BE Careful
+Uncomment line 23 to automatically create both the users and tasks table and a success message will be shown in your terminal if you managed to create the tables.
+In order for you to be able to delete any data from the tables uncomment one the lines from 49 to 54 depending on which database you want to restart afresh . Take note that even if you reset you database the id will always start from the id after the last data entry.
+## Database Used
+My first choice of database to use was fs which is the file system , but due to the amount of errors I was getting . My last resort was to Use Sqlite3 which worked perfectly
 ## Installation
  Clone The Repo From Github To Local
  
