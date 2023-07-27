@@ -63,8 +63,8 @@ const restApi = (db) => {
         db.all(sql, [], (err, users) => {
             if (err) {
                 console.log(err);
-            }else if(users.length === 0){
-                res.send('No users in the database');
+            } else if (users.length === 0) {
+                console.log('No users in the database');
             }
             res.send(users);
         });
@@ -75,7 +75,7 @@ const restApi = (db) => {
         db.get(sql, (err, user) => {
             if (err) {
                 console.log(err);
-            }else if(user === undefined){
+            } else if (user === undefined) {
                 res.send('No user with this id in the database');
             }
             res.send(user);
@@ -84,9 +84,7 @@ const restApi = (db) => {
     async function createTask(req, res) {
         const id = req.params.id;
         const task = req.body;
-        // i want my time to be in this format 2016-05-25 14:25:00
         const time = moment(task.date_time).format('YYYY-MM-DD HH:mm:ss');
-        console.log(time);
         const sql = `INSERT INTO tasks (user_id, name, description, date_time) VALUES (${id}, '${task.name}', '${task.description}', '${time}')`;
         db.run(sql, (err) => {
             if (err) {
@@ -95,7 +93,7 @@ const restApi = (db) => {
             console.log('Task created for user id ' + id);
         }
         );
-        res.send('Task is added to the database');
+        console.log('Task is added to the database');
     }
     async function updateTask(req, res) {
         const id = req.params.id;
@@ -130,7 +128,7 @@ const restApi = (db) => {
         const sql = `SELECT * FROM tasks WHERE id = ${task_id} and user_id = ${id}`;
         db.get(sql, (err, task) => {
             if (err) {
-                console.log(err);
+                console.log(err)
             }
             res.send(task);
         });
@@ -141,13 +139,14 @@ const restApi = (db) => {
         db.all(sql, [], (err, tasks) => {
             if (err) {
                 console.log(err);
-            }else if(tasks.length === 0 ){
+            } else if (tasks.length === 0) {
                 console.log('No tasks for this user in the database');
+                // res.send("No Tasks For This User")
             }
             res.send(tasks);
         });
     }
-    async function deleteUsers(){
+    async function deleteUsers(req,res) {
         const sql = `DELETE FROM users`;
         db.run(sql, (err) => {
             if (err) {
@@ -157,7 +156,7 @@ const restApi = (db) => {
         }
         );
     }
-    async function deleteTasks(){
+    async function deleteTasks(req,res) {
         const sql = `DELETE FROM tasks`;
         db.run(sql, (err) => {
             if (err) {

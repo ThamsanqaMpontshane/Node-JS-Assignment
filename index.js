@@ -1,8 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import  sqlite3  from 'sqlite3';
+import sqlite3 from 'sqlite3';
 import moment from 'moment';
 import routes from './routes/routes.js';
+import cron from 'node-cron';
 
 const app = express();
 const port = 3000;
@@ -17,15 +18,33 @@ const theRoutes = routes(db);
 //!Schedule Service Task
 db.on('trace', (sql) => {
   console.log('Executing', sql);
-  console.log('Done !!!')
 });
 
+// every 11 seconds
+cron.schedule('*/11 * * * * *', () => {
+  db.all('SELECT * FROM tasks WHERE status = "pending" AND date_time < datetime("now")', (err, rows) => {
+    if (err) {
+      console.error(err.message);
+    }
+    // Update each task to "done" and print it to the console
+    rows.forEach((row) => {
+      db.run('UPDATE tasks SET status = "done" WHERE id = ?', [row.id], (err) => {
+        if (err) {
+          console.error(err.message);
+          return;
+        }
+        console.log(`Task ${row.id} (${row.name}): ${row.description}`);
+      });
+    });
+  });
+});
 
 // !Uncomment line to create tables for users and tasks
 // theRoutes.createTable();
 
 app.use(bodyParser.json());
 
+// home page
 app.get('/', theRoutes.defaultRoute);
 // create user
 app.post('/api/users', theRoutes.createUser);

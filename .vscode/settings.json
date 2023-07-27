@@ -1,0 +1,12 @@
+{
+  "sqltools.useNodeRuntime": true,
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "name": "Node Assesment",
+      "group": "Group",
+      "database": "${workspaceFolder:Node-JS-Assignment}/test/test.db"
+    }
+  ]
+}
